@@ -10,6 +10,48 @@ master.geometry("%dx%d%+d%+d" % (width, height, 0, 0))
 canvas = tk.Canvas(master, width=width, height=height)
 canvas.pack()
 
+# P. Bourke after Saupe
+#axiom="VZFFF"
+#rules={"V": "[+++W][---W]YV","W":"+X[-W]Z","X":"-W[+X]Z","Y":"YZ","Z":"[-FcFF][+FdFF]F","c":"","d":""}
+#iters=8
+#angle=20
+#length=2
+
+# poetasters succulent 1
+#axiom="A"
+#rules={"A": "[FL]gAhg[FLA]","F":"cSF","S":"dFL","L":"c[F+F+F]fe[F-F-F]","c":"","d":"","e":"","g":"","h":""}
+#iters=7
+#angle=17
+#length=2
+
+# Weed, P. Bourke
+#axiom="F"
+#rules={"F": "FF-[XY]+[XY]","X":"+cFY","Y":"-dFX","c":"","d":""}
+#iters=6
+#angle=22.5
+#length=2
+
+# Pean-c flower after Gary Teachout
+#axiom="FXhFXiFX"
+#rules={"F": "","X":"[FX-FY][-cFX-FY-FX][ZZ]-dFY-FX+FY+FX","Y":"FY","Z":"-cFX-FY-FX","c":"","d":"","h":"","i":""}
+#iters=3
+#angle=340
+#length=2
+
+# poetasters weed, after, P. Bourke
+#axiom="F"
+#rules={"F": "F-[XY]+[XY]F+[XY]-[XY]","X":"+dFY","Y":"-cFX","c":"","d":""}
+#iters=6
+#angle=22.5
+#length=2
+
+# Unlikely bush (after Bourke)
+#axiom="F"
+#rules={"F": "eF[+cFF][-FF]cF[-F]d[+F]F","c":"","d":"","e":""}
+#iters=3
+#angle=330
+#length=2
+
 # Mango Leaf
 #axiom="Y---Y"
 #rules={"X": "F-FF-F--[--X]F-FF-F--F-FF-F--", "Y": "f-F+X+F-fY"}
