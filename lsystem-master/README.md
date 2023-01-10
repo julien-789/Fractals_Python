@@ -3,7 +3,7 @@ lsystem
 
 Simple [L-system](http://en.wikipedia.org/wiki/Lsystem) based fractal generator written just for fun.
 
-Alphabet that can be used in axioms and rules is pretty simple: *FGf+-[]*. Each letter is responsible for particular
+Alphabet that can be used in axioms and rules is pretty simple: *FGf+-[]()*. Each letter is responsible for particular
 turtle (see [turtle graphics](http://en.wikipedia.org/wiki/Turtle_graphics) for more info) command, namely:
 
 Usage:
