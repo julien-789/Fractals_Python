@@ -16,6 +16,8 @@ Click on Draw to draw the fractal
 
 Requires Python 3.8 32-bit for Windows
 
+https://www.python.org/ftp/python/3.8.0/python-3.8.0.exe
+
 * *F* and *G*: draw forward
 * *f*: move cursor forward without drawing anything
 * *+*: turn right
