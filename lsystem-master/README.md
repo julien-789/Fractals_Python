@@ -38,6 +38,8 @@ iters=4
 
 angle=75
 
+![alt text](https://github.com/julien-789/Fractals_Python/blob/main/lsystem-master/img/von%20Koch%20-%20acute%20snowflake.png)
+
 # Cesaro curve #1
 
 axiom="F+(90)F+(90)F+(90)F"
@@ -48,6 +50,8 @@ iters=5
 
 angle=85.3
 
+![alt text](https://github.com/julien-789/Fractals_Python/blob/main/lsystem-master/img/Cesaro%20curve%20%231.png)
+
 # Mango Leaf
 
 axiom="Y---Y"
@@ -57,3 +61,5 @@ rules={"X": "F-FF-F--[--X]F-FF-F--F-FF-F--", "Y": "f-F+X+F-fY"}
 iters=10
 
 angle=60
+
+![alt text](https://github.com/julien-789/Fractals_Python/blob/main/lsystem-master/img/Mango%20Leaf.png)
