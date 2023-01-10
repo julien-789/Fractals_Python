@@ -14,7 +14,7 @@ Click on Parameters to edit your L-system
 
 Click on Draw to draw the fractal
 
-Requires Python 3.8 32-bit
+Requires Python 3.8 32-bit for Windows
 
 * *F* and *G*: draw forward
 * *f*: move cursor forward without drawing anything
