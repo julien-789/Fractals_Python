@@ -9,7 +9,9 @@ turtle (see [turtle graphics](http://en.wikipedia.org/wiki/Turtle_graphics) for 
 Usage:
 
 Run draw_from_file App
-Click on Parameters to edit your L-system and 
+
+Click on Parameters to edit your L-system
+
 Click on Draw to draw the fractal
 
 Requires Python 3.8 32-bit
