@@ -118,10 +118,10 @@ canvas.pack()
 #length=2
 
 # Cesaro curve #1
-#axiom="F+(172)F+(172)F+(172)F"
+#axiom="F+(90)F+(90)F+(90)F"
 #rules={"F": "F+F--F+F"}
 #iters=5
-#angle=85.25
+#angle=85.3
 #length=2
 
 # Tree
