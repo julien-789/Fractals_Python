@@ -74,6 +74,9 @@ declare sub ovl_paint
 declare sub drawselrect
 declare SUB graphmousedown(Button AS INTEGER , x AS INTEGER , y AS INTEGER)
 declare sub parameterssub
+declare sub savebmpsub
+declare sub savelsyssub
+declare sub loadlsyssub
 
 DIM red AS INTEGER , orange AS INTEGER , yellow AS INTEGER , green AS INTEGER , blue AS INTEGER , lightblue AS INTEGER , purple AS INTEGER , _
     gray AS INTEGER , black AS INTEGER , pink AS INTEGER , olive AS INTEGER , aqua AS INTEGER , crimson AS INTEGER , gold AS INTEGER , _
@@ -267,8 +270,8 @@ end create
 create parametersfrm as qform
 caption="Parameters"
 visible=0
-height=480
-width=640
+height=700
+width=800
 create axiomlbl as qlabel
 left=0
 top=0
@@ -379,9 +382,89 @@ left=rule5lbl.left+rule5lbl.width
 top=rule5lbl.top
 text=""
 end create
-create incrementlbl as qlabel
+create production6lbl as qlabel
 left=0
 top=220
+caption="Production 6:"
+end create
+create production6 as qedit
+left=production6lbl.left+production6lbl.width
+top=production6lbl.top
+text=""
+end create
+create rule6lbl as qlabel
+left=0
+top=240
+caption="Rule 6:"
+end create
+create rule6 as qedit
+left=rule6lbl.left+rule6lbl.width
+top=rule6lbl.top
+text=""
+end create
+create production7lbl as qlabel
+left=0
+top=260
+caption="Production 7:"
+end create
+create production7 as qedit
+left=production7lbl.left+production7lbl.width
+top=production7lbl.top
+text=""
+end create
+create rule7lbl as qlabel
+left=0
+top=280
+caption="Rule 7:"
+end create
+create rule7 as qedit
+left=rule7lbl.left+rule7lbl.width
+top=rule7lbl.top
+text=""
+end create
+create production8lbl as qlabel
+left=0
+top=300
+caption="Production 8:"
+end create
+create production8 as qedit
+left=production8lbl.left+production8lbl.width
+top=production8lbl.top
+text=""
+end create
+create rule8lbl as qlabel
+left=0
+top=320
+caption="Rule 8:"
+end create
+create rule8 as qedit
+left=rule8lbl.left+rule8lbl.width
+top=rule8lbl.top
+text=""
+end create
+create production9lbl as qlabel
+left=0
+top=340
+caption="Production 9:"
+end create
+create production9 as qedit
+left=production9lbl.left+production9lbl.width
+top=production9lbl.top
+text=""
+end create
+create rule9lbl as qlabel
+left=0
+top=360
+caption="Rule 9:"
+end create
+create rule9 as qedit
+left=rule9lbl.left+rule9lbl.width
+top=rule9lbl.top
+text=""
+end create
+create incrementlbl as qlabel
+left=0
+top=380
 caption="Iterations :"
 end create
 create increment as qedit
@@ -391,7 +474,7 @@ text="4"
 end create
 create depthlbl as qlabel
 left=0
-top=240
+top=400
 caption="Depth :"
 end create
 create depth as qedit
@@ -407,7 +490,7 @@ caption="(Default Rotation Value)"
 end create
 create lengthlbl as qlabel
 left=0
-top=260
+top=420
 caption="Length :"
 end create
 create length as qedit
@@ -422,7 +505,7 @@ caption="(Initial line length)"
 end create
 create rangelbl as qlabel
 left=0
-top=280
+top=440
 caption="Rate :"
 end create
 create range as qedit
@@ -438,7 +521,7 @@ caption="(The multiplier of shrinking after each iteration)"
 end create
 create penxlbl as qlabel
 left=0
-top=300
+top=460
 caption="Pen x :"
 end create
 create penx as qedit
@@ -449,7 +532,7 @@ enabled=0
 end create
 create penylbl as qlabel
 left=0
-top=320
+top=480
 caption="Pen y :"
 end create
 create peny as qedit
@@ -460,7 +543,7 @@ enabled=0
 end create
 create anglelbl as qlabel
 left=0
-top=340
+top=500
 caption="Angle :"
 end create
 create angle as qedit
@@ -470,7 +553,7 @@ text="75"
 end create
 create pointxlbl as qlabel
 left=0
-top=360
+top=520
 caption="Point x :"
 end create
 create pointx as qedit
@@ -485,7 +568,7 @@ caption="(x pixel location of the drawing)"
 end create
 create pointylbl as qlabel
 left=0
-top=380
+top=540
 caption="Point y :"
 end create
 create pointy as qedit
@@ -498,11 +581,29 @@ left=pointy.left+pointy.width
 top=pointy.top
 caption="(y pixel location of the drawing)"
 end create
-create Infolbl as qlabel
+'create Infolbl as qlabel
+'left=0
+'top=560
+''caption="Note: sometimes you'll have to put your rules within quotes ('rule')"
+'caption=""
+'end create
+create savelsys as qbutton
 left=0
-top=400
-'caption="Note: sometimes you'll have to put your rules within quotes ('rule')"
-caption=""
+top=560
+caption="Save LSys"
+onclick=savelsyssub
+end create
+create loadlsys as qbutton
+left=0
+top=580
+caption="Load LSys"
+onclick=loadlsyssub
+end create
+create savebmp as qbutton
+left=0
+top=600
+caption="Save BMP"
+onclick=savebmpsub
 end create
 
 end create
@@ -598,6 +699,38 @@ filestream.Close
 
 filestream.Open("rule5.txt" , fmCreate)
 filestream.WriteLine(rule5.text)
+filestream.Close
+
+filestream.Open("production6.txt" , fmCreate)
+filestream.WriteLine(production6.text)
+filestream.Close
+
+filestream.Open("rule6.txt" , fmCreate)
+filestream.WriteLine(rule6.text)
+filestream.Close
+
+filestream.Open("production7.txt" , fmCreate)
+filestream.WriteLine(production7.text)
+filestream.Close
+
+filestream.Open("rule7.txt" , fmCreate)
+filestream.WriteLine(rule7.text)
+filestream.Close
+
+filestream.Open("production8.txt" , fmCreate)
+filestream.WriteLine(production8.text)
+filestream.Close
+
+filestream.Open("rule8.txt" , fmCreate)
+filestream.WriteLine(rule8.text)
+filestream.Close
+
+filestream.Open("production9.txt" , fmCreate)
+filestream.WriteLine(production9.text)
+filestream.Close
+
+filestream.Open("rule9.txt" , fmCreate)
+filestream.WriteLine(rule9.text)
 filestream.Close
     
     filestream.Open("test.bat" , fmCreate)
@@ -736,6 +869,206 @@ SUB graphmousedown(Button AS INTEGER , x AS INTEGER , y AS INTEGER)
     mousediffx=screen.mousex-relativecordx
     mousediffy=screen.mousey-relativecordy    
     
-end sub      
+end sub  
+
+sub savebmpsub
+defstr curdirtmp=curdir$
+dim dlgSave as qsavedialog
+
+qcShowSave :
+dlgSave.Caption = "Save Graph"
+dlgSave.Filter = "Bitmap Files|*.bmp|All Files|*.*"
+dlgSave.FilterIndex = 1
+dlgSave.FileName = "*.bmp"
+IF dlgSave.Execute AND LEN(dlgSave.FileName) <> 0 THEN
+    IF FILEEXISTS(dlgSave.FileName) THEN  'check if file exists
+        DIM Response AS INTEGER  'ask user for decision
+        Response = MESSAGEDLG("File Already Exists. Overwrite " + dlgSave.FileName + "?" , 0 , 1 OR 2 OR 8 , 0) 'Y OR N OR Cancel
+        SELECT CASE Response
+            CASE 7  'NO; don't overwrite, ask again
+                GOTO qcShowSave  '<--- Use of a local GOTO loop!
+            CASE 2  'CANCEL;don't overwrite, don't ask again
+                EXIT SUB
+        END SELECT
+    END IF
+END IF
+                DIM File AS QFILESTREAM
+                File.Open(dlgSave.FileName , 65535) '65535 = fmCreate
+                bmOvl.SaveToStream(File) 'save the data
+                File.Close
+                chdir curdirtmp
+end sub  
+
+sub savelsyssub
+defstr curdirtmp=curdir$
+DIM SaveDialog AS QSAVEDIALOG
+    SaveDialog.Caption = "Save LSys"
+    SaveDialog.Filter = "LSY File|*.lsy"
+    SaveDialog.FilterIndex = 1
+    SaveDialog.FileName = "template.lsy"
+
+    IF SaveDialog.Execute THEN
+    
+        DIM filestream AS QFILESTREAM
+        filestream.open(SaveDialog.FileName , 65535) '65535 = fmCreate 
+        'filestream.writeline("test")    
+        defint i
+        
+        
+        filestream.writeline("axiom="+axiom.text+",")
+filestream.writeline("production1="+production1.text+",")
+filestream.writeline("rule1="+rule1.text+",")
+filestream.writeline("production2="+production2.text+",")
+filestream.writeline("rule2="+rule2.text+",")
+filestream.writeline("production3="+production3.text+",")
+filestream.writeline("rule3="+rule3.text+",")
+filestream.writeline("production4="+production4.text+",")
+filestream.writeline("rule4="+rule4.text+",")
+filestream.writeline("production5="+production5.text+",")
+filestream.writeline("rule5="+rule5.text+",")
+filestream.writeline("production6="+production6.text+",")
+filestream.writeline("rule6="+rule6.text+",")
+filestream.writeline("production7="+production7.text+",")
+filestream.writeline("rule7="+rule7.text+",")
+filestream.writeline("production8="+production8.text+",")
+filestream.writeline("rule8="+rule8.text+",")
+filestream.writeline("production9="+production9.text+",")
+filestream.writeline("rule9="+rule9.text+",")
+filestream.writeline("increment="+increment.text+",")
+filestream.writeline("length="+length.text+",")
+filestream.writeline("angle="+angle.text+",")
+filestream.writeline("pointx="+pointx.text+",")
+filestream.writeline("pointy="+pointy.text+",")          
+filestream.close
+END IF
+  chdir curdirtmp
+end sub
+
+sub loadlsyssub
+defstr curdirtmp=curdir$
+DIM OpenDialog AS QOPENDIALOG
+    IF OpenDialog.Execute THEN
+         OpenDialog.Caption = "Open LSys"
+    OpenDialog.Filter = "LSY File|*.lsy"
+    OpenDialog.FilterIndex = 1    
+
+DIM filestream AS QFILESTREAM
+        DEFSTR filecontentstr = ""
+        defint separatorpos,j=1
+        defstr valuestr,objectname,price1,price2,unixtime1,unixtime2,labelname,value2str,value3str,value4str,value5str,objectnametmp=""
+               
+filestream.Open(OpenDialog.FileName , 0)
+        WHILE NOT filestream.eof            
+            filecontentstr = filestream.ReadLine
+            
+            separatorpos = 0
+
+            valuestr = MID$(filecontentstr , separatorpos + 1 , LEN(filecontentstr))
+            separatorpos=INSTR(0 , valuestr , "=")
+            objectname = MID$(valuestr , 0 , separatorpos - 1)
+            if objectname=objectnametmp then 
+                j++            
+            else
+                j=1
+            end if
+            objectnametmp=objectname            
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            price1 = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            price2 = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            unixtime1 = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            unixtime2 = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            labelname = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            value2str = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            value3str = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            value4str = MID$(valuestr , 0 , separatorpos - 1)
+            
+            valuestr = MID$(valuestr , separatorpos + 1 , LEN(valuestr))
+            separatorpos=INSTR(0 , valuestr , ",")
+            value5str = MID$(valuestr , 0 , separatorpos - 1)
+            
+            select case objectname
+            
+                case "axiom":
+                axiom.text=price1
+                case "production1":
+                production1.text=price1
+                case "rule1":
+                rule1.text=price1
+                case "production2":
+                production2.text=price1
+                case "rule2":
+                rule2.text=price1
+                case "production3":
+                production3.text=price1
+                case "rule3":
+                rule3.text=price1
+                case "production4":
+                production4.text=price1
+                case "rule4":
+                rule4.text=price1
+                case "production5":
+                production5.text=price1
+                case "rule5":
+                rule5.text=price1
+                case "production6":
+                production6.text=price1
+                case "rule6":
+                rule6.text=price1
+                case "production7":
+                production7.text=price1
+                case "rule7":
+                rule7.text=price1
+                case "production8":
+                production8.text=price1
+                case "rule8":
+                rule8.text=price1
+                case "production9":
+                production9.text=price1
+                case "rule9":
+                rule9.text=price1
+                case "increment":
+                increment.text=price1
+                case "length":
+                length.text=price1
+                case "angle":
+                angle.text=price1
+                case "pointx":
+                pointx.text=price1
+                case "pointy":
+                pointy.text=price1
+                                                
+            end select
+        WEND        
+        filestream.Close
+        end if
+        chdir curdirtmp
+        IF FILEEXISTS(OpenDialog.FileName) = FALSE THEN
+        PRINT " file not found "
+        EXIT SUB
+    END IF
+end sub  
 
 frmmain.showmodal
